@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOHŌ Lagos — Fine Dining & Lounge, Lekki</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #C9A96E;
+    --gold-light: #E8D5B0;
+    --gold-dark: #8B6B35;
+    --cream: #F8F4EE;
+    --charcoal: #1A1814;
+    --warm-dark: #12100E;
+    --muted: #6B6560;
+    --border: rgba(201,169,110,0.25);
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Inter', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--warm-dark);
+    color: var(--cream);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(18,16,14,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 300;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex; gap: 2.5rem; list-style: none;
+  }
+  .nav-links a {
+    color: var(--cream); text-decoration: none;
+    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+    opacity: 0.8; transition: opacity 0.2s, color 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; color: var(--gold); }
+  .nav-cta {
+    background: transparent; border: 0.5px solid var(--gold);
+    color: var(--gold); padding: 0.5rem 1.5rem;
+    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+    cursor: pointer; font-family: var(--sans);
+    transition: background 0.25s, color 0.25s;
+    text-decoration: none; display: inline-block;
+  }
+  .nav-cta:hover { background: var(--gold); color: var(--warm-dark); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; position: relative;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    background: linear-gradient(160deg, #1A1510 0%, #0E0C09 60%, #1A1208 100%);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(201,169,110,0.07) 0%, transparent 70%);
+  }
+  .hero-lines {
+    position: absolute; inset: 0; pointer-events: none;
+  }
+  .hero-lines::before, .hero-lines::after {
+    content: ''; position: absolute;
+    border: 0.5px solid rgba(201,169,110,0.12);
+    border-radius: 50%;
+  }
+  .hero-lines::before {
+    width: 600px; height: 600px;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+  }
+  .hero-lines::after {
+    width: 900px; height: 900px;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 780px; padding: 2rem; }
+  .hero-eyebrow {
+    font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.5rem; opacity: 0.9;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(4rem, 10vw, 7.5rem);
+    font-weight: 300; line-height: 0.95;
+    letter-spacing: 0.06em;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero-sub {
+    font-size: 0.85rem; letter-spacing: 0.08em;
+    color: rgba(248,244,238,0.6); max-width: 480px; margin: 0 auto 2.5rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold); color: var(--warm-dark);
+    padding: 0.8rem 2.5rem; font-family: var(--sans);
+    font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+    border: none; cursor: pointer; text-decoration: none; display: inline-block;
+    transition: background 0.25s;
+  }
+  .btn-primary:hover { background: var(--gold-light); }
+  .btn-outline {
+    background: transparent; color: var(--cream);
+    border: 0.5px solid rgba(248,244,238,0.4);
+    padding: 0.8rem 2.5rem; font-family: var(--sans);
+    font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+    cursor: pointer; text-decoration: none; display: inline-block;
+    transition: border-color 0.25s, color 0.25s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-stats {
+    position: absolute; bottom: 3rem; left: 0; right: 0;
+    display: flex; justify-content: center; gap: 4rem;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: var(--serif); font-size: 2rem; font-weight: 300;
+    color: var(--gold); display: block; line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(248,244,238,0.45); margin-top: 0.3rem;
+  }
+
+  /* SECTION COMMONS */
+  section { padding: 7rem 3rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-eyebrow {
+    font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1rem; display: block;
+  }
+  .section-title {
+    font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 300; line-height: 1.1; color: var(--cream); margin-bottom: 1.25rem;
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+  .divider {
+    width: 48px; height: 0.5px; background: var(--gold);
+    margin: 1.5rem 0;
+  }
+  .section-body {
+    font-size: 0.9rem; color: rgba(248,244,238,0.6);
+    max-width: 540px; line-height: 1.9;
+  }
+
+  /* ABOUT */
+  .about { background: var(--charcoal); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+  }
+  .about-visual {
+    position: relative; height: 520px;
+  }
+  .about-box {
+    position: absolute; border: 0.5px solid var(--border);
+    background: rgba(201,169,110,0.04);
+  }
+  .about-box-main {
+    inset: 0; display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 1rem;
+  }
+  .about-box-accent {
+    width: 180px; height: 180px; bottom: -20px; right: -20px;
+    background: rgba(201,169,110,0.06); border-color: rgba(201,169,110,0.15);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .about-icon {
+    font-family: var(--serif); font-size: 5rem; color: var(--gold); opacity: 0.3; line-height: 1;
+  }
+  .about-tag {
+    font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); border: 0.5px solid var(--border); padding: 0.5rem 1.2rem;
+  }
+  .about-feature-list { list-style: none; margin-top: 2rem; }
+  .about-feature-list li {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 0.75rem 0; border-bottom: 0.5px solid rgba(201,169,110,0.1);
+    font-size: 0.85rem; color: rgba(248,244,238,0.7);
+  }
+  .about-feature-list li::before {
+    content: '—'; color: var(--gold); flex-shrink: 0; margin-top: 0.05rem;
+  }
+
+  /* MENU */
+  .menu { background: var(--warm-dark); }
+  .menu-tabs {
+    display: flex; gap: 0; border: 0.5px solid var(--border);
+    width: fit-content; margin-bottom: 3.5rem;
+  }
+  .menu-tab {
+    padding: 0.65rem 1.75rem; font-size: 0.7rem; letter-spacing: 0.15em;
+    text-transform: uppercase; cursor: pointer; border: none; font-family: var(--sans);
+    background: transparent; color: rgba(248,244,238,0.5);
+    border-right: 0.5px solid var(--border);
+    transition: background 0.2s, color 0.2s;
+  }
+  .menu-tab:last-child { border-right: none; }
+  .menu-tab.active { background: var(--gold); color: var(--warm-dark); }
+  .menu-tab:hover:not(.active) { color: var(--gold); }
+  .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .menu-item {
+    padding: 1.5rem 0; border-bottom: 0.5px solid rgba(201,169,110,0.1);
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem;
+  }
+  .menu-item:nth-child(odd) { padding-right: 2rem; border-right: 0.5px solid rgba(201,169,110,0.1); }
+  .menu-item:nth-child(even) { padding-left: 2rem; }
+  .menu-item-name {
+    font-family: var(--serif); font-size: 1.1rem; font-weight: 400;
+    color: var(--cream); margin-bottom: 0.25rem;
+  }
+  .menu-item-desc { font-size: 0.78rem; color: rgba(248,244,238,0.45); line-height: 1.6; }
+  .menu-item-price {
+    font-family: var(--serif); font-size: 1rem;
+    color: var(--gold); white-space: nowrap; flex-shrink: 0;
+  }
+  .menu-note {
+    margin-top: 2.5rem; padding: 1.25rem 1.75rem;
+    border: 0.5px solid var(--border); background: rgba(201,169,110,0.04);
+    font-size: 0.78rem; color: rgba(248,244,238,0.5); line-height: 1.8;
+  }
+  .menu-panel { display: none; }
+  .menu-panel.active { display: block; }
+
+  /* EXPERIENCE */
+  .experience { background: var(--charcoal); }
+  .exp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; margin-top: 4rem; }
+  .exp-card {
+    background: rgba(201,169,110,0.04); border: 0.5px solid var(--border);
+    padding: 2.5rem 2rem; transition: background 0.3s;
+  }
+  .exp-card:hover { background: rgba(201,169,110,0.08); }
+  .exp-num {
+    font-family: var(--serif); font-size: 3rem; font-weight: 300;
+    color: rgba(201,169,110,0.2); line-height: 1; margin-bottom: 1rem;
+  }
+  .exp-card-title {
+    font-family: var(--serif); font-size: 1.3rem; font-weight: 400;
+    color: var(--cream); margin-bottom: 0.75rem;
+  }
+  .exp-card-body { font-size: 0.82rem; color: rgba(248,244,238,0.5); line-height: 1.8; }
+
+  /* REVIEWS */
+  .reviews { background: var(--warm-dark); }
+  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 3.5rem; }
+  .review-card {
+    border: 0.5px solid var(--border); padding: 2rem;
+    background: rgba(201,169,110,0.03); position: relative;
+  }
+  .review-stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 0.15em; margin-bottom: 1rem; }
+  .review-text {
+    font-family: var(--serif); font-size: 1rem; font-weight: 300;
+    font-style: italic; color: rgba(248,244,238,0.8); line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+  .review-author { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
+  .review-platform { font-size: 0.65rem; color: rgba(248,244,238,0.35); margin-top: 0.2rem; }
+  .reviews-summary {
+    margin-top: 3rem; display: flex; gap: 3rem; align-items: center;
+    padding-top: 2.5rem; border-top: 0.5px solid var(--border);
+  }
+  .rating-big {
+    font-family: var(--serif); font-size: 4.5rem; font-weight: 300;
+    color: var(--gold); line-height: 1;
+  }
+  .rating-info { }
+  .rating-stars-row { color: var(--gold); font-size: 1.1rem; letter-spacing: 0.1em; }
+  .rating-sub { font-size: 0.75rem; color: rgba(248,244,238,0.4); margin-top: 0.4rem; }
+
+  /* ORDER */
+  .order { background: var(--charcoal); }
+  .order-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-top: 3rem; }
+  .order-form { }
+  .form-group { margin-bottom: 1.25rem; }
+  .form-group label {
+    display: block; font-size: 0.68rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: rgba(248,244,238,0.5); margin-bottom: 0.5rem;
+  }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; background: rgba(201,169,110,0.05);
+    border: 0.5px solid var(--border); color: var(--cream);
+    padding: 0.8rem 1rem; font-family: var(--sans); font-size: 0.85rem;
+    outline: none; transition: border-color 0.2s;
+    -webkit-appearance: none; appearance: none;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--gold);
+  }
+  .form-group select option { background: var(--charcoal); }
+  .form-group textarea { height: 100px; resize: vertical; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .order-info { }
+  .order-info-block {
+    border: 0.5px solid var(--border); padding: 2rem;
+    background: rgba(201,169,110,0.03); margin-bottom: 1.5rem;
+  }
+  .oi-title {
+    font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1rem; display: block;
+  }
+  .oi-row {
+    display: flex; justify-content: space-between; padding: 0.6rem 0;
+    border-bottom: 0.5px solid rgba(201,169,110,0.08);
+    font-size: 0.82rem;
+  }
+  .oi-row:last-child { border-bottom: none; }
+  .oi-label { color: rgba(248,244,238,0.5); }
+  .oi-value { color: var(--cream); }
+  .oi-value a { color: var(--gold); text-decoration: none; }
+
+  /* LOCATION */
+  .location { background: var(--warm-dark); }
+  .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-top: 3rem; }
+  .map-embed {
+    border: 0.5px solid var(--border); overflow: hidden; height: 380px;
+    position: relative; background: rgba(201,169,110,0.03);
+  }
+  .map-embed iframe { width: 100%; height: 100%; border: none; filter: grayscale(30%) contrast(1.05); }
+  .loc-blocks { }
+  .loc-block {
+    padding: 1.5rem 0; border-bottom: 0.5px solid rgba(201,169,110,0.12);
+  }
+  .loc-block:first-child { padding-top: 0; }
+  .loc-block-label {
+    font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.5rem; display: block;
+  }
+  .loc-block-val { font-size: 0.9rem; color: rgba(248,244,238,0.8); line-height: 1.7; }
+  .loc-block-val a { color: var(--gold); text-decoration: none; }
+  .hours-grid { display: grid; grid-template-columns: auto 1fr; gap: 0.25rem 1.5rem; }
+  .hours-day { font-size: 0.8rem; color: rgba(248,244,238,0.5); }
+  .hours-time { font-size: 0.8rem; color: rgba(248,244,238,0.8); }
+
+  /* PRIVATE DINING */
+  .private { background: var(--charcoal); }
+  .private-inner {
+    text-align: center; max-width: 680px; margin: 0 auto;
+  }
+  .private-inner .divider { margin: 1.5rem auto; }
+  .private-inner .section-body { margin: 0 auto 2.5rem; text-align: center; max-width: 480px; }
+  .private-features {
+    display: flex; justify-content: center; gap: 3rem; margin: 2.5rem 0;
+    flex-wrap: wrap;
+  }
+  .pf {
+    font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(248,244,238,0.5); display: flex; align-items: center; gap: 0.5rem;
+  }
+  .pf::before { content: '◆'; color: var(--gold); font-size: 0.4rem; }
+
+  /* FOOTER */
+  footer {
+    background: #0A0907; padding: 4rem 3rem 2rem;
+    border-top: 0.5px solid var(--border);
+  }
+  .footer-inner { max-width: 1100px; margin: 0 auto; }
+  .footer-top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    padding-bottom: 3rem; border-bottom: 0.5px solid rgba(201,169,110,0.12);
+    gap: 3rem; flex-wrap: wrap;
+  }
+  .footer-brand .nav-logo { display: block; margin-bottom: 1rem; }
+  .footer-tagline { font-size: 0.78rem; color: rgba(248,244,238,0.35); max-width: 220px; line-height: 1.8; }
+  .footer-col-title {
+    font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.25rem; display: block;
+  }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 0.65rem; }
+  .footer-links a {
+    font-size: 0.82rem; color: rgba(248,244,238,0.5);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 2rem; flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-copy { font-size: 0.72rem; color: rgba(248,244,238,0.25); }
+  .social-links { display: flex; gap: 1.5rem; }
+  .social-links a {
+    font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(248,244,238,0.35); text-decoration: none; transition: color 0.2s;
+  }
+  .social-links a:hover { color: var(--gold); }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 5rem 1.5rem; }
+    .about-grid, .order-grid, .location-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-visual { height: 280px; }
+    .menu-grid { grid-template-columns: 1fr; }
+    .menu-item:nth-child(odd) { padding-right: 0; border-right: none; }
+    .menu-item:nth-child(even) { padding-left: 0; }
+    .exp-grid { grid-template-columns: 1fr; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 2rem; }
+    .footer-top { flex-direction: column; }
+    .hero h1 { font-size: 3.2rem; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  /* GALLERY */
+  .gallery { background: var(--warm-dark); }
+  .gallery-intro { max-width: 580px; margin-bottom: 3.5rem; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: 10px;
+  }
+  .gallery-item {
+    position: relative; overflow: hidden;
+    background: rgba(201,169,110,0.05);
+    border: 0.5px solid var(--border);
+    cursor: pointer;
+  }
+  .gallery-item.large {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  .gallery-item img {
+    width: 100%; height: 100%; object-fit: cover;
+    display: block;
+    transition: transform 0.55s ease, filter 0.55s ease;
+    filter: brightness(0.92) saturate(1.05);
+  }
+  .gallery-item.large img { min-height: 480px; }
+  .gallery-item:not(.large) img { min-height: 230px; }
+  .gallery-item:hover img {
+    transform: scale(1.04);
+    filter: brightness(1) saturate(1.15);
+  }
+  .gallery-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(18,16,14,0.75) 0%, transparent 55%);
+    display: flex; align-items: flex-end;
+    padding: 1.25rem 1.5rem;
+    opacity: 0; transition: opacity 0.35s ease;
+  }
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+  .gallery-caption {
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    color: var(--cream);
+    letter-spacing: 0.05em;
+  }
+  .gallery-caption span {
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+    font-family: var(--sans);
+  }
+  .gallery-cta { text-align: center; margin-top: 2.5rem; }
+  .gallery-cta p {
+    font-size: 0.78rem; color: rgba(248,244,238,0.45);
+    letter-spacing: 0.08em; margin-bottom: 1.25rem;
+  }
+
+  /* LIGHTBOX */
+  .lightbox {
+    display: none; position: fixed; inset: 0; z-index: 999;
+    background: rgba(12,10,8,0.96);
+    align-items: center; justify-content: center;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox-inner {
+    position: relative; max-width: 820px; width: 90%;
+    border: 0.5px solid var(--border);
+  }
+  .lightbox-inner img { width: 100%; display: block; max-height: 80vh; object-fit: contain; }
+  .lightbox-close {
+    position: absolute; top: -2.5rem; right: 0;
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(248,244,238,0.5); cursor: pointer;
+    background: none; border: none; font-family: var(--sans);
+    transition: color 0.2s;
+  }
+  .lightbox-close:hover { color: var(--gold); }
+  .lightbox-label {
+    padding: 1rem 1.5rem;
+    border-top: 0.5px solid var(--border);
+    background: rgba(18,16,14,0.9);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .lightbox-title {
+    font-family: var(--serif); font-size: 1.05rem; color: var(--cream);
+  }
+  .lightbox-nav {
+    display: flex; gap: 1rem;
+  }
+  .lightbox-nav button {
+    background: none; border: 0.5px solid var(--border);
+    color: rgba(248,244,238,0.5); padding: 0.3rem 0.9rem;
+    font-family: var(--sans); font-size: 0.7rem; letter-spacing: 0.1em;
+    cursor: pointer; transition: border-color 0.2s, color 0.2s;
+  }
+  .lightbox-nav button:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* Gallery Mobile */
+  @media (max-width: 768px) {
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-item.large { grid-column: span 2; }
+    .gallery-item.large img { min-height: 280px; }
+    .gallery-item:not(.large) img { min-height: 160px; }
+    .gallery-overlay { opacity: 1; }
+  }
+
+  /* SCROLL REVEAL */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">SOHŌ</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#location">Visit</a></li>
+    <li><a href="#order">Reserve</a></li>
+  </ul>
+  <a href="#order" class="nav-cta">Reserve a Table</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-lines"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Lekki Phase 1 · Lagos · Est. 2024</p>
+    <h1>Where Lagos<br>Dines <em>Differently</em></h1>
+    <p class="hero-sub">An upscale restaurant and lounge blending contemporary fine dining with a curated nightlife experience — at the heart of Lekki's most fashionable address.</p>
+    <div class="hero-actions">
+      <a href="#menu" class="btn-primary">Explore the Menu</a>
+      <a href="#order" class="btn-outline">Reserve a Table</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-num">4.8</span>
+      <span class="stat-label">TripAdvisor Rating</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">#4</span>
+      <span class="stat-label">Restaurant in Lagos</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">10am–12am</span>
+      <span class="stat-label">Daily, All Week</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-box about-box-main">
+          <div class="about-icon">S</div>
+          <span class="about-tag">Fine Dining & Lounge</span>
+          <span class="about-tag">Lekki Phase 1</span>
+        </div>
+        <div class="about-box about-box-accent">
+          <div style="font-family: var(--serif); font-size: 0.85rem; color: var(--gold); text-align:center; letter-spacing:0.1em; line-height:2; padding: 1rem;">Minimum<br>₦40,000<br>per person</div>
+        </div>
+      </div>
+      <div class="reveal">
+        <span class="section-eyebrow">Our Story</span>
+        <h2 class="section-title">A New Standard<br>in <em>Lagos Dining</em></h2>
+        <div class="divider"></div>
+        <p class="section-body">SOHŌ Lagos occupies a singular space in Lekki's dining scene — equal parts restaurant, lounge, and destination. From the warm wooden tones and wine wall to the minimalist lighting and indoor greenery, every detail is considered. It is a space for conversation, celebration, and memorable evenings.</p>
+        <ul class="about-feature-list">
+          <li>Contemporary upscale cuisine with international and American-inspired influences</li>
+          <li>Chic, minimalist interiors designed for intimacy and occasion</li>
+          <li>An extensive wine and cocktail programme curated for the discerning Lagos guest</li>
+          <li>Ideal for date nights, corporate dinners, birthdays, and private celebrations</li>
+          <li>₦800 packaging fee for takeaway orders</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu" id="menu">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="section-eyebrow">The Menu</span>
+      <h2 class="section-title">Curated for the<br><em>Discerning Palate</em></h2>
+      <div class="divider"></div>
+      <p class="section-body" style="margin-bottom:2.5rem;">Starters from ₦13,000 · Mains from ₦18,000 · Desserts from ₦10,000<br>Kindly inform our team of any allergies or dietary requirements.</p>
+    </div>
+    <div class="menu-tabs">
+      <button class="menu-tab active" onclick="switchTab('starters', this)">Starters</button>
+      <button class="menu-tab" onclick="switchTab('mains', this)">Mains</button>
+      <button class="menu-tab" onclick="switchTab('desserts', this)">Desserts</button>
+      <button class="menu-tab" onclick="switchTab('drinks', this)">Drinks</button>
+    </div>
+
+    <div id="panel-starters" class="menu-panel active reveal">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Wok-Fried Dumplings</div>
+            <div class="menu-item-desc">Pan-seared, ginger soy dip, sesame oil finish</div>
+          </div>
+          <div class="menu-item-price">₦13,000</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Deep-Fried Tiger Prawns</div>
+            <div class="menu-item-desc">Crispy golden batter, sweet chili dipping sauce</div>
+          </div>
+          <div class="menu-item-price">₦17,000</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Loaded Nachos</div>
+            <div class="menu-item-desc">Melted cheese, jalapeños, pico de gallo, sour cream</div>
+          </div>
+          <div class="menu-item-price">₦14,000</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Soup of the Day</div>
+            <div class="menu-item-desc">Chef's daily selection, artisan bread</div>
+          </div>
+          <div class="menu-item-price">₦13,500</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Avocado Bruschetta</div>
+            <div class="menu-item-desc">Toasted sourdough, smashed avocado, cherry tomato, micro herbs</div>
+          </div>
+          <div class="menu-item-price">₦15,000</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Chicken Spring Rolls</div>
+            <div class="menu-item-desc">Crispy, served with a plum dipping sauce</div>
+          </div>
+          <div class="menu-item-price">₦13,000</div>
+        </div>
+      </div>
+      <div class="menu-note">Please inform our service team of any food allergies or dietary intolerances. All prices include VAT. A ₦800 packaging fee applies to takeaway orders.</div>
+    </div>
+
+    <div id="panel-mains" class="menu-panel reveal">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Wok Fried Rice</div>
+            <div class="menu-item-desc">House seasoning, egg, spring onion, your choice of protein</div>
+          </div>
+          <div class="menu-item-price">₦18,000</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Shredded Beef</div>
+            <div class="menu-item-desc">Slow-cooked, wok-tossed with peppers and black bean</div>
+          </div>
+          <div class="menu-item-price">₦22,000</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">SOHŌ Signature Burger</div>
+            <div class="menu-item-desc">Wagyu patty, aged cheddar, truffle mayo, brioche bun, hand-cut fries</div>
+          </div>
+          <div class="menu-item-price">₦25,000</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Smoked Turkey Wing</div>
+            <div class="menu-item-desc">Spiced honey glaze, roasted garlic mash, seasonal greens</div>
+          </div>
+          <div class="menu-item-price">₦20,000</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Grilled Sea Bass</div>
+            <div class="menu-item-desc">Herb crust, lemon butter sauce, sautéed vegetables</div>
+          </div>
+          <div class="menu-item-price">₦35,000</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Wagyu Ribeye Steak</div>
+            <div class="menu-item-desc">250g, choice of sauce, fries or mash</div>
+          </div>
+          <div class="menu-item-price">₦65,000</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Creamy Pasta</div>
+            <div class="menu-item-desc">Tagliatelle, choice of salmon, chicken or truffle</div>
+          </div>
+          <div class="menu-item-price">₦19,000</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Mashed Potato</div>
+            <div class="menu-item-desc">Buttery, creamy, perfectly seasoned — a house favourite</div>
+          </div>
+          <div class="menu-item-price">₦8,000</div>
+        </div>
+      </div>
+      <div class="menu-note">Please inform our service team of any food allergies or dietary intolerances. All prices include VAT.</div>
+    </div>
+
+    <div id="panel-desserts" class="menu-panel reveal">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Asian Delight Ice Cream</div>
+            <div class="menu-item-desc">House-made, mixed tropical fruits, sesame brittle</div>
+          </div>
+          <div class="menu-item-price">₦10,000</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Fried Ice Cream</div>
+            <div class="menu-item-desc">Golden crisp shell, vanilla centre, honey drizzle</div>
+          </div>
+          <div class="menu-item-price">₦10,000</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Warm Chocolate Fondant</div>
+            <div class="menu-item-desc">Molten centre, vanilla bean ice cream, raspberry coulis</div>
+          </div>
+          <div class="menu-item-price">₦12,000</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Crème Brûlée</div>
+            <div class="menu-item-desc">Classic vanilla, caramelised sugar top, seasonal berries</div>
+          </div>
+          <div class="menu-item-price">₦11,000</div>
+        </div>
+      </div>
+      <div class="menu-note">Desserts rotate seasonally. Ask your server for today's featured creation.</div>
+    </div>
+
+    <div id="panel-drinks" class="menu-panel reveal">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Fresh Orange Juice</div>
+            <div class="menu-item-desc">Cold-pressed, no added sugar</div>
+          </div>
+          <div class="menu-item-price">₦5,000</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Signature Mocktails</div>
+            <div class="menu-item-desc">Ask your server for today's selection</div>
+          </div>
+          <div class="menu-item-price">₦8,000+</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">House Cocktails</div>
+            <div class="menu-item-desc">Crafted by our bar team — classic and contemporary</div>
+          </div>
+          <div class="menu-item-price">₦12,000+</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Premium Wines</div>
+            <div class="menu-item-desc">Curated selection of reds, whites, and rosés by the bottle</div>
+          </div>
+          <div class="menu-item-price">From ₦25,000</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Champagne & Sparkling</div>
+            <div class="menu-item-desc">From Prosecco to Moët, for celebrations large and intimate</div>
+          </div>
+          <div class="menu-item-price">From ₦40,000</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Premium Spirits</div>
+            <div class="menu-item-desc">Whisky, vodka, rum, gin — top international labels</div>
+          </div>
+          <div class="menu-item-price">On request</div>
+        </div>
+      </div>
+      <div class="menu-note">Responsible service of alcohol. Please drink responsibly. Our team is happy to suggest pairings for your meal.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience" id="experience">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center; max-width:580px; margin:0 auto;">
+      <span class="section-eyebrow">The SOHŌ Experience</span>
+      <h2 class="section-title">More than a meal —<br><em>a moment</em></h2>
+      <div class="divider" style="margin-left:auto;margin-right:auto;"></div>
+    </div>
+    <div class="exp-grid">
+      <div class="exp-card reveal">
+        <div class="exp-num">01</div>
+        <div class="exp-card-title">The Ambience</div>
+        <p class="exp-card-body">Warm wooden tones, clean beige palette, minimalist lighting and curated indoor plants create a contemporary luxury setting that is Instagram-ready yet never try-hard. A space built for genuine connection.</p>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-num">02</div>
+        <div class="exp-card-title">The Cuisine</div>
+        <p class="exp-card-body">An international menu with bold American and contemporary influences. Every plate is crafted for both flavour and presentation — from the crispy tiger prawns to the showstopping wagyu ribeye.</p>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-num">03</div>
+        <div class="exp-card-title">The Bar</div>
+        <p class="exp-card-body">An open wine wall, signature cocktails, and a premium spirits list. Our bar team pairs knowledgeable recommendations with a welcoming approach — whether your evening begins or ends here.</p>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-num">04</div>
+        <div class="exp-card-title">The Service</div>
+        <p class="exp-card-body">Attentive without intrusion. Our team is trained to anticipate and deliver — ensuring that from arrival to farewell, your experience at SOHŌ is one you will return to.</p>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-num">05</div>
+        <div class="exp-card-title">Private Events</div>
+        <p class="exp-card-body">Birthdays, anniversaries, corporate gatherings — SOHŌ hosts with distinction. Tailored packages available on request. Speak to our events team for a bespoke proposal.</p>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-num">06</div>
+        <div class="exp-card-title">Nightlife</div>
+        <p class="exp-card-body">As the evening deepens, SOHŌ transforms. A fashionable crowd, carefully curated music, and a lounge atmosphere that keeps Lagos's most discerning guests coming back.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="section-inner">
+    <div class="reveal gallery-intro">
+      <span class="section-eyebrow">From Our Kitchen</span>
+      <h2 class="section-title">A Feast for<br>the <em>Eyes</em></h2>
+      <div class="divider"></div>
+      <p class="section-body">Every dish at SOHŌ is crafted for presentation as much as flavour. From our signature wok-fried creations to the showstopping wagyu ribeye — here is a glimpse of what awaits you.</p>
+    </div>
+
+    <div class="gallery-grid reveal">
+      <!-- Large hero image — interior / signature dish -->
+      <div class="gallery-item large" onclick="openLightbox(0)">
+        <img
+          src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=900&q=85&auto=format&fit=crop"
+          alt="SOHŌ Lagos — Pan-seared dumplings with ginger soy dip"
+          loading="lazy"
+        />
+        <div class="gallery-overlay">
+          <div class="gallery-caption">
+            <span>Starters</span>
+            Wok-Fried Dumplings
+          </div>
+        </div>
+      </div>
+
+      <!-- Top-right: prawns -->
+      <div class="gallery-item" onclick="openLightbox(1)">
+        <img
+          src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=600&q=85&auto=format&fit=crop"
+          alt="SOHŌ Lagos — Deep-fried tiger prawns"
+          loading="lazy"
+        />
+        <div class="gallery-overlay">
+          <div class="gallery-caption">
+            <span>Starters</span>
+            Tiger Prawns
+          </div>
+        </div>
+      </div>
+
+      <!-- Mid-right: fried rice -->
+      <div class="gallery-item" onclick="openLightbox(2)">
+        <img
+          src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600&q=85&auto=format&fit=crop"
+          alt="SOHŌ Lagos — Wok Fried Rice"
+          loading="lazy"
+        />
+        <div class="gallery-overlay">
+          <div class="gallery-caption">
+            <span>Mains</span>
+            Wok Fried Rice
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="gallery-item" onclick="openLightbox(3)">
+        <img
+          src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=85&auto=format&fit=crop"
+          alt="SOHŌ Lagos — Wagyu Ribeye Steak"
+          loading="lazy"
+        />
+        <div class="gallery-overlay">
+          <div class="gallery-caption">
+            <span>Mains</span>
+            Wagyu Ribeye
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(4)">
+        <img
+          src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=85&auto=format&fit=crop"
+          alt="SOHŌ Lagos — SOHŌ Signature Burger"
+          loading="lazy"
+        />
+        <div class="gallery-overlay">
+          <div class="gallery-caption">
+            <span>Mains</span>
+            SOHŌ Signature Burger
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(5)">
+        <img
+          src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600&q=85&auto=format&fit=crop"
+          alt="SOHŌ Lagos — Desserts"
+          loading="lazy"
+        />
+        <div class="gallery-overlay">
+          <div class="gallery-caption">
+            <span>Desserts</span>
+            Warm Chocolate Fondant
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-cta reveal">
+      <p>Follow us for daily food and ambience updates</p>
+      <a href="https://instagram.com/soho.lagos" target="_blank" class="btn-outline">@soho.lagos on Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightboxOnBackdrop(event)">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightbox()">✕ Close</button>
+    <img id="lightbox-img" src="" alt="" />
+    <div class="lightbox-label">
+      <span class="lightbox-title" id="lightbox-title"></span>
+      <div class="lightbox-nav">
+        <button onclick="shiftLightbox(-1)">← Prev</button>
+        <button onclick="shiftLightbox(1)">Next →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="section-eyebrow">Guest Reviews</span>
+      <h2 class="section-title">What our guests<br><em>say about us</em></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"The best Asian food experience in Lagos and Nigeria. Authentic cuisine, great products, and a very nice, peaceful atmosphere. I will definitely come back."</p>
+        <div class="review-author">Verified Guest</div>
+        <div class="review-platform">TripAdvisor</div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Great service from Mary. The food was delicious and the fruit cocktail was exceptional. Received genuinely excellent hospitality — a standout evening in Lagos."</p>
+        <div class="review-author">Hotel Guest</div>
+        <div class="review-platform">TripAdvisor</div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Really enjoyed the evening. Nice and attentive staff. The ambience was ideal for a dinner. Great setting and it absolutely deserves to be revisited again and again."</p>
+        <div class="review-author">Lagos Diner</div>
+        <div class="review-platform">TripAdvisor</div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"The food and drinks were amazing. We didn't make a reservation and were seated well — wait time was only 20–30 minutes. If you're in Lekki, this is a must-visit."</p>
+        <div class="review-author">Traveller from Abroad</div>
+        <div class="review-platform">Google Maps</div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Exceptional Chinese cuisine, the restaurant is very nice with a peaceful atmosphere. The portions are generous and the presentation is beautiful. Will come back."</p>
+        <div class="review-author">Business Diner</div>
+        <div class="review-platform">TripAdvisor</div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Ose was such a helpful and lovely presence as I enjoyed my last meal in Lagos. This experience is why people love Nigeria. Highly recommend — a truly memorable farewell dinner."</p>
+        <div class="review-author">International Visitor</div>
+        <div class="review-platform">TripAdvisor</div>
+      </div>
+    </div>
+    <div class="reviews-summary reveal">
+      <div class="rating-big">4.8</div>
+      <div class="rating-info">
+        <div class="rating-stars-row">★★★★★</div>
+        <div style="font-size:0.8rem;color:rgba(248,244,238,0.7);margin-top:0.35rem;">Rated 4.8 out of 5 · #4 Restaurant in Lagos</div>
+        <div class="rating-sub">Based on 268+ verified reviews on TripAdvisor</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER / RESERVATION -->
+<section class="order" id="order">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="section-eyebrow">Reservations & Orders</span>
+      <h2 class="section-title">Reserve your<br><em>table</em></h2>
+      <div class="divider"></div>
+      <p class="section-body" style="margin-bottom:3rem;">Walk-ins are welcome, but we recommend a reservation for weekend evenings. Please note the minimum spend of ₦40,000 per person.</p>
+    </div>
+    <div class="order-grid">
+      <div class="order-form reveal">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" placeholder="Your name">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="+234 ...">
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="your@email.com">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Date</label>
+            <input type="date">
+          </div>
+          <div class="form-group">
+            <label>Preferred Time</label>
+            <select>
+              <option>Select time</option>
+              <option>10:00 AM</option>
+              <option>12:00 PM (Lunch)</option>
+              <option>2:00 PM</option>
+              <option>4:00 PM</option>
+              <option>6:00 PM (Dinner)</option>
+              <option>7:00 PM</option>
+              <option>8:00 PM</option>
+              <option>9:00 PM</option>
+              <option>10:00 PM</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Number of Guests</label>
+            <select>
+              <option>1 Guest</option>
+              <option>2 Guests</option>
+              <option>3–4 Guests</option>
+              <option>5–6 Guests</option>
+              <option>7–10 Guests</option>
+              <option>Private Event (10+)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Occasion</label>
+            <select>
+              <option>Dinner</option>
+              <option>Lunch</option>
+              <option>Birthday</option>
+              <option>Anniversary</option>
+              <option>Business Dinner</option>
+              <option>Brunch</option>
+              <option>Private Event</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Special Requests</label>
+          <textarea placeholder="Dietary requirements, celebrations, seating preferences..."></textarea>
+        </div>
+        <button class="btn-primary" style="width:100%; border:none; font-size:0.78rem; padding:1rem;" onclick="alert('Reservation request submitted! Our team will contact you shortly to confirm.')">Confirm Reservation</button>
+      </div>
+      <div class="order-info reveal">
+        <div class="order-info-block">
+          <span class="oi-title">Contact & Booking</span>
+          <div class="oi-row">
+            <span class="oi-label">Phone</span>
+            <span class="oi-value"><a href="tel:+2349168566725">+234 916 856 6725</a></span>
+          </div>
+          <div class="oi-row">
+            <span class="oi-label">Instagram</span>
+            <span class="oi-value"><a href="https://instagram.com/soho.lagos" target="_blank">@soho.lagos</a></span>
+          </div>
+          <div class="oi-row">
+            <span class="oi-label">Online Order</span>
+            <span class="oi-value"><a href="https://app.dinesurf.com/menu/soho-lagos" target="_blank">Dinesurf</a></span>
+          </div>
+          <div class="oi-row">
+            <span class="oi-label">Min. Spend</span>
+            <span class="oi-value">₦40,000 per person</span>
+          </div>
+          <div class="oi-row">
+            <span class="oi-label">Takeaway Fee</span>
+            <span class="oi-value">₦800 packaging</span>
+          </div>
+        </div>
+        <div class="order-info-block">
+          <span class="oi-title">Opening Hours</span>
+          <div class="oi-row">
+            <span class="oi-label">Monday – Sunday</span>
+            <span class="oi-value">10:00 AM – 12:00 AM</span>
+          </div>
+          <div class="oi-row">
+            <span class="oi-label">Kitchen Last Order</span>
+            <span class="oi-value">11:00 PM</span>
+          </div>
+          <div class="oi-row">
+            <span class="oi-label">Reservations</span>
+            <span class="oi-value">Walk-ins welcome</span>
+          </div>
+        </div>
+        <div class="order-info-block">
+          <span class="oi-title">Private Events</span>
+          <div style="font-size:0.82rem; color:rgba(248,244,238,0.6); line-height:1.9;">
+            SOHŌ is available for exclusive hire for birthdays, anniversaries, and corporate events. Bespoke packages crafted upon request. Contact our events team to begin planning your occasion.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="location" id="location">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="section-eyebrow">Find Us</span>
+      <h2 class="section-title">At the heart of<br><em>Lekki Phase 1</em></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="location-grid">
+      <div class="map-embed reveal">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.731!2d3.478!3d6.434!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103bf53b8e5d1111%3A0x0!2s6A%20Ogbunike%20St%2C%20Lekki%20Phase%201%2C%20Lagos!5e0!3m2!1sen!2sng!4v1700000000000"
+          allowfullscreen loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="SOHŌ Lagos on Google Maps">
+        </iframe>
+      </div>
+      <div class="loc-blocks reveal">
+        <div class="loc-block">
+          <span class="loc-block-label">Address</span>
+          <div class="loc-block-val">6A Ogbunike Street<br>Lekki Phase 1, Eti-Osa<br>Lagos 105102, Nigeria</div>
+        </div>
+        <div class="loc-block">
+          <span class="loc-block-label">Opening Hours</span>
+          <div class="hours-grid">
+            <span class="hours-day">Monday</span><span class="hours-time">10:00 AM – 12:00 AM</span>
+            <span class="hours-day">Tuesday</span><span class="hours-time">10:00 AM – 12:00 AM</span>
+            <span class="hours-day">Wednesday</span><span class="hours-time">10:00 AM – 12:00 AM</span>
+            <span class="hours-day">Thursday</span><span class="hours-time">10:00 AM – 12:00 AM</span>
+            <span class="hours-day">Friday</span><span class="hours-time">10:00 AM – 12:00 AM</span>
+            <span class="hours-day">Saturday</span><span class="hours-time">10:00 AM – 12:00 AM</span>
+            <span class="hours-day">Sunday</span><span class="hours-time">10:00 AM – 12:00 AM</span>
+          </div>
+        </div>
+        <div class="loc-block">
+          <span class="loc-block-label">Getting Here</span>
+          <div class="loc-block-val">Located in Lekki Phase 1, easily accessible from Admiralty Way and the main Lekki-Epe Expressway. Valet parking available on request.</div>
+        </div>
+        <div class="loc-block">
+          <span class="loc-block-label">Directions</span>
+          <div class="loc-block-val">
+            <a href="https://maps.google.com/?q=6A+Ogbunike+St+Lekki+Phase+1+Lagos" target="_blank">Open in Google Maps →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVATE DINING CTA -->
+<section class="private" id="private">
+  <div class="section-inner">
+    <div class="private-inner reveal">
+      <span class="section-eyebrow">Private Dining</span>
+      <h2 class="section-title">Celebrate with us<br><em>exclusively</em></h2>
+      <div class="divider"></div>
+      <p class="section-body">From intimate birthday dinners to grand corporate events, SOHŌ transforms for your occasion. Our dedicated events team handles every detail — from bespoke menus to décor — so you simply arrive and enjoy.</p>
+      <div class="private-features">
+        <span class="pf">Dedicated Events Team</span>
+        <span class="pf">Bespoke Menus</span>
+        <span class="pf">Full Venue Hire</span>
+        <span class="pf">Birthday Packages</span>
+        <span class="pf">Corporate Dinners</span>
+        <span class="pf">Anniversary Celebrations</span>
+      </div>
+      <a href="#order" class="btn-primary">Enquire About Private Events</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">SOHŌ</a>
+        <p class="footer-tagline">Fine dining and lounge experience at the heart of Lekki, Lagos.</p>
+      </div>
+      <div>
+        <span class="footer-col-title">Navigate</span>
+        <ul class="footer-links">
+          <li><a href="#about">About SOHŌ</a></li>
+          <li><a href="#menu">The Menu</a></li>
+          <li><a href="#gallery">Food Gallery</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#reviews">Guest Reviews</a></li>
+          <li><a href="#order">Reservations</a></li>
+          <li><a href="#location">Find Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="footer-col-title">Contact</span>
+        <ul class="footer-links">
+          <li><a href="https://instagram.com/soho.lagos" target="_blank">@soho.lagos on Instagram</a></li>
+          <li><a href="https://app.dinesurf.com/menu/soho-lagos" target="_blank">Order on Dinesurf</a></li>
+          <li><a href="https://maps.google.com/?q=6A+Ogbunike+St+Lekki+Phase+1+Lagos" target="_blank">6A Ogbunike St, Lekki</a></li>
+          <li><a href="#order">Events Enquiries</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="footer-col-title">Hours</span>
+        <ul class="footer-links">
+          <li><a>Mon – Sun</a></li>
+          <li><a>10:00 AM – 12:00 AM</a></li>
+          <li><a style="color:var(--gold)">Open Every Day</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 SOHŌ Lagos, Lekki Phase 1. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://instagram.com/soho.lagos" target="_blank">Instagram</a>
+        <a href="https://www.tripadvisor.com/Restaurant_Review-g304026-d6519358-Reviews-Soho-Lagos_Lagos_State.html" target="_blank">TripAdvisor</a>
+        <a href="https://app.dinesurf.com/menu/soho-lagos" target="_blank">Dinesurf</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // LIGHTBOX
+  const galleryData = [
+    { src: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?w=1200&q=90&auto=format&fit=crop', title: 'Wok-Fried Dumplings — Pan-seared, ginger soy dip, sesame oil finish' },
+    { src: 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=1200&q=90&auto=format&fit=crop', title: 'Deep-Fried Tiger Prawns — Crispy golden batter, sweet chili dipping sauce' },
+    { src: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=1200&q=90&auto=format&fit=crop', title: 'Wok Fried Rice — House seasoning, egg, spring onion, choice of protein' },
+    { src: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=1200&q=90&auto=format&fit=crop', title: 'Wagyu Ribeye Steak — 250g, choice of sauce, fries or mash' },
+    { src: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1200&q=90&auto=format&fit=crop', title: 'SOHŌ Signature Burger — Wagyu patty, aged cheddar, truffle mayo, brioche bun' },
+    { src: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=1200&q=90&auto=format&fit=crop', title: 'Warm Chocolate Fondant — Molten centre, vanilla bean ice cream, raspberry coulis' },
+  ];
+  let lightboxIndex = 0;
+
+  function openLightbox(i) {
+    lightboxIndex = i;
+    document.getElementById('lightbox-img').src = galleryData[i].src;
+    document.getElementById('lightbox-img').alt = galleryData[i].title;
+    document.getElementById('lightbox-title').textContent = galleryData[i].title;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function closeLightboxOnBackdrop(e) {
+    if (e.target === document.getElementById('lightbox')) closeLightbox();
+  }
+  function shiftLightbox(dir) {
+    lightboxIndex = (lightboxIndex + dir + galleryData.length) % galleryData.length;
+    openLightbox(lightboxIndex);
+  }
+  document.addEventListener('keydown', (e) => {
+    if (!document.getElementById('lightbox').classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') shiftLightbox(1);
+    if (e.key === 'ArrowLeft') shiftLightbox(-1);
+  });
+
+  function switchTab(name, el) {
+    document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('panel-' + name).classList.add('active');
+  }
+
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
